@@ -21,7 +21,7 @@ namespace XFUserControl.ViewModels
             set { SetProperty(ref _numDouble, value); }
         }
 
-        private int _numInt = 10;
+        private int _numInt = 0;
         public int NumInt {
             get { return _numInt; }
             set { SetProperty(ref _numInt, value); }
