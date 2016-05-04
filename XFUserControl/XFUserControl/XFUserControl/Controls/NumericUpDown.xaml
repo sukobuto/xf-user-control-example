@@ -1,17 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:XFUserControl.Controls;assembly=XFUserControl"
              x:Class="XFUserControl.Controls.NumericUpDown">
   <Grid>
-    <Grid.BindingContext>
-      <!--
-      ContentView.BindingContext に ViewModel を設定してしまうと、
-      この NumericUpDown を利用する側で BindableProperty にバインドできなくなってしまう。
-      その代わりに一つ下の階層の BindingContext に ViewModel を設定する。
-      -->
-      <controls:NumericUpDownViewModel x:Name="viewModel" />
-    </Grid.BindingContext>
     
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
@@ -19,9 +10,9 @@
       <ColumnDefinition Width="*" />
     </Grid.ColumnDefinitions>
 
-    <Button Grid.Column="0" Text="↓DOWN" Command="{Binding Down}" />
-    <Label Grid.Column="1" Text="{Binding Value.Value, StringFormat='{0:F1}'}" FontSize="Large" HorizontalOptions="CenterAndExpand" />
-    <Button Grid.Column="2" Text="↑UP" Command="{Binding Up}" />
+    <Button Grid.Column="0" Text="↓DOWN" Clicked="OnDownClicked" />
+    <Label Grid.Column="1" x:Name="valueLabel" FontSize="Large" HorizontalOptions="CenterAndExpand" />
+    <Button Grid.Column="2" Text="↑UP" Clicked="OnUpClicked" />
     
   </Grid>
 </ContentView>

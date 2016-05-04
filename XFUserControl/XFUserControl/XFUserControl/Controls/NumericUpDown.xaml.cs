@@ -11,68 +11,25 @@ namespace XFUserControl.Controls
 {
     public partial class NumericUpDown : ContentView
     {
-
         #region Value BindableProperty
         public static readonly BindableProperty ValueProperty =
-            BindableProperty.Create(nameof(Value), typeof(double), typeof(NumericUpDown), 0.0,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Value = (double)newValue,
-                defaultBindingMode: BindingMode.TwoWay
+            BindableProperty.Create(
+                nameof(Value),          // 対象のプロパティ名 (文字列)
+                typeof(double),         // 対象のプロパティの型
+                typeof(NumericUpDown),  // プロパティを定義する型（自クラス）
+                0.0,                    // プロパティのデフォルト値
+                propertyChanged: (bindable, oldValue, newValue) => { // 変更通知ハンドラ
+                    ((NumericUpDown)bindable).Value = (double)newValue;
+                },
+                defaultBindingMode: BindingMode.TwoWay  // デフォルトのバインディングモード
             );
 
         public double Value {
             get { return (double)GetValue(ValueProperty); }
             set {
                 SetValue(ValueProperty, value);
-                this.viewModel.Value.Value = value;
-            }
-        }
-        #endregion
-
-        #region Minimum BindableProperty
-        public static readonly BindableProperty MinimumProperty =
-            BindableProperty.Create(nameof(Minimum), typeof(double), typeof(NumericUpDown), double.MinValue,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Minimum = (double)newValue
-            );
-
-        public double Minimum {
-            get { return (double)GetValue(MinimumProperty); }
-            set {
-                SetValue(MinimumProperty, value);
-                this.viewModel.Minimum = value;
-            }
-        }
-        #endregion
-
-        #region Maximum BindableProperty
-        public static readonly BindableProperty MaximumProperty =
-            BindableProperty.Create(nameof(Maximum), typeof(double), typeof(NumericUpDown), double.MaxValue,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Maximum = (double)newValue
-            );
-
-        public double Maximum {
-            get { return (double)GetValue(MaximumProperty); }
-            set {
-                SetValue(MaximumProperty, value);
-                this.viewModel.Maximum = value;
-            }
-        }
-        #endregion
-
-        #region Step BindableProperty
-        public static readonly BindableProperty StepProperty =
-            BindableProperty.Create(nameof(Step), typeof(double), typeof(NumericUpDown), 1.0,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Step = (double)newValue
-            );
-
-        public double Step {
-            get { return (double)GetValue(StepProperty); }
-            set {
-                SetValue(StepProperty, value);
-                this.viewModel.Step = value;
+                // 値が変更されるたびに Label のテキストを変更する
+                this.valueLabel.Text = value.ToString();
             }
         }
         #endregion
@@ -80,8 +37,19 @@ namespace XFUserControl.Controls
         public NumericUpDown()
         {
             InitializeComponent();
-            this.viewModel.Value
-                .Subscribe(x => this.Value = x);
+            this.valueLabel.Text = Value.ToString(); // 初期テキストをセット
+        }
+
+        // 以下はボタンのイベントハンドラ定義
+
+        void OnUpClicked(object sender, EventArgs e)
+        {
+            this.Value += 1;
+        }
+
+        void OnDownClicked(object sender, EventArgs e)
+        {
+            this.Value -= 1;
         }
     }
 }
