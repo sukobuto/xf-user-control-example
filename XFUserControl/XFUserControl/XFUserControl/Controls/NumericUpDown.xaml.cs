@@ -14,9 +14,11 @@ namespace XFUserControl.Controls
 
         #region Value BindableProperty
         public static readonly BindableProperty ValueProperty =
-            BindableProperty.Create(nameof(Value), typeof(double), typeof(NumericUpDown), 0.0,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Value = (double)newValue,
+            BindableProperty.Create(
+                nameof(Value), typeof(double), typeof(NumericUpDown), 0.0,
+                propertyChanged: (bindable, oldValue, newValue) => {
+                    ((NumericUpDown)bindable).Value = (double)newValue;
+                },
                 defaultBindingMode: BindingMode.TwoWay
             );
 
@@ -31,9 +33,11 @@ namespace XFUserControl.Controls
 
         #region Minimum BindableProperty
         public static readonly BindableProperty MinimumProperty =
-            BindableProperty.Create(nameof(Minimum), typeof(double), typeof(NumericUpDown), double.MinValue,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Minimum = (double)newValue
+            BindableProperty.Create(
+                nameof(Minimum), typeof(double), typeof(NumericUpDown), double.MinValue,
+                propertyChanged: (bindable, oldValue, newValue) => {
+                    ((NumericUpDown)bindable).Minimum = (double)newValue;
+                }
             );
 
         public double Minimum {
@@ -47,9 +51,11 @@ namespace XFUserControl.Controls
 
         #region Maximum BindableProperty
         public static readonly BindableProperty MaximumProperty =
-            BindableProperty.Create(nameof(Maximum), typeof(double), typeof(NumericUpDown), double.MaxValue,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Maximum = (double)newValue
+            BindableProperty.Create(
+                nameof(Maximum), typeof(double), typeof(NumericUpDown), double.MaxValue,
+                propertyChanged: (bindable, oldValue, newValue) => {
+                    ((NumericUpDown)bindable).Maximum = (double)newValue;
+                }
             );
 
         public double Maximum {
@@ -63,9 +69,11 @@ namespace XFUserControl.Controls
 
         #region Step BindableProperty
         public static readonly BindableProperty StepProperty =
-            BindableProperty.Create(nameof(Step), typeof(double), typeof(NumericUpDown), 1.0,
-                propertyChanged: (bindable, oldValue, newValue) =>
-                    ((NumericUpDown)bindable).Step = (double)newValue
+            BindableProperty.Create(
+                nameof(Step), typeof(double), typeof(NumericUpDown), 1.0,
+                propertyChanged: (bindable, oldValue, newValue) => {
+                    ((NumericUpDown)bindable).Step = (double)newValue;
+                }
             );
 
         public double Step {

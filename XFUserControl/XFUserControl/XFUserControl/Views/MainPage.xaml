@@ -13,8 +13,6 @@
         <StackLayout>
           <Label Text="{Binding NumDouble, StringFormat='NumDouble = {0:F1}'}" TextColor="Green" HorizontalOptions="CenterAndExpand" />
           <controls:NumericUpDown Value="{Binding NumDouble}" Minimum="-20.0" Maximum="20.0" Step="2.0" />
-          <Slider Value="{Binding NumDouble}" Minimum="-20.0" Maximum="20.0" />
-          <Label>Slider をいじった後に UP/DOWN を押すと停止する。もしかして double の精度の問題で変更通知ループが発生してる？</Label>
         </StackLayout>
       </Frame>
 
@@ -22,8 +20,6 @@
         <StackLayout>
           <Label Text="{Binding NumInt, StringFormat='NumInt = {0:F0}'}" TextColor="Green" HorizontalOptions="CenterAndExpand" />
           <controls:NumericUpDown Value="{Binding NumInt}" Minimum="-10" Maximum="10" Step="2" />
-          <Slider Value="{Binding NumInt}" Minimum="-10" Maximum="10" />
-          <Label>int だと特に問題は起きない</Label>
         </StackLayout>
       </Frame>
       
